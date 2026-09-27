@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>first html code</title>
+</head>
+<body>
+
+<h1>this is my first html file lol</h1>
+
+<p>so this is basically me messing around with html for act 1.</p>
+
+<h2>random stuff about me</h2>
+<p>i'm jemuel, currently procrastinating on other homework while doing this one instead.</p>
+
+<p>Hobbies:</p>
+<ul>
+  <li>drawing </li>
+  <li>Art Commissions on the side</li>
+  <li>Reading</li>
+</ul>
+
+<p>things i still need to finish today:</p>
+<ol>
+  <li>this activity</li>
+  <li>act 2 (already submitted, finally)</li>
+  <li>sleep at a normal hour, probably not</li>
+</ol>
+
+<p>here's a link to <a href="https://vgen.co/JemuelArts" target="_blank">my art page</a> if you're curious.</p>
+
+<img src="images/sample.jpg" alt="random image i added" width="200">
+
+<blockquote>"it works on my machine" - every dev ever</blockquote>
+
+<p>ok not gonna lie, html is kinda <strong>easier</strong> than i expected, though the git stuff was more <em>annoying</em> tbh.</p>
+
+<table border="1">
+  <tr>
+    <th>tag</th>
+    <th>what it does</th>
+  </tr>
+  <tr>
+    <td>ul/ol</td>
+    <td>lists, one ordered one not</td>
+  </tr>
+  <tr>
+    <td>blockquote</td>
+    <td>random quote styling</td>
+  </tr>
+</table>
+
+</body>
+</html>

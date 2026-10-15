@@ -1,0 +1,289 @@
+/* ==========================================================
+Part A — CSS Fundamentals 
+☑  Link styles.css inside the <head> of index.html using <link rel="stylesheet" href="styles.css">. 
+☑  Write at least 8 complete rules, each with a selector and a { property: value; } declaration block. 
+☑  Add at least 3 CSS comments that divide your file into sections (e.g., Reset, Layout, 
+Components). 
+☑  Use at least two different units, such as px, %, em, or rem (for example, rem for font sizes).
+☑  Show the cascade: write two rules that target the same element, and add a comment saying which 
+one wins and why. 
+Part B — Selectors, Properties, and Values 
+☑  Universal selector (*): set margin: 0 and padding: 0 as a simple reset.
+☑  Type selector: style body and h1, h2 (use a grouping selector such as h1, h2 { ... } at least once).
+☑  Class selector: style .card and .intro.
+☑  ID selector: style #about so it stands out from the other cards (e.g., a different border color).
+☑  Combinator: use a descendant selector (e.g., .card p) and a child selector (e.g., .skills-list > li).
+☑  Pseudo-class: add a :hover effect to the nav links. Pseudo-element: use ::before on h2 or ::first
+letter on .intro. 
+☑  Use at least these properties: color, font-family, font-size, font-weight, text-align, background
+color. Define colors in three ways: a name, a hex code, and rgb()/rgba(). 
+Part C — Box Model and Basic Layout 
+☑  Add * { box-sizing: border-box; } at the top of your stylesheet.
+☑  Give .card a fixed width (e.g., 500px), padding, a border (width, style, and color in one line), and 
+border-radius. 
+☑  Center every .card horizontally using margin: 0 auto, and use margin-bottom to space the cards 
+apart. 
+☑  Center the text in header and footer using text-align: center.
+☑  Use positioning: make #about position: relative, then add a small badge using #about::after with 
+position: absolute placed in its top-right corner. 
+☑  Add a comment that states the total rendered width of one .card and how you calculated it.
+Part D — Display and Visibility 
+☑  Make the nav links display: inline-block, then give them padding and a background so width/height
+style spacing works. 
+☑  Turn .skills-list into a flex container (display: flex) and use gap and justify-content to lay the items 
+out in a row. Style each li like a small tag. 
+☑  Hide .hide-none using display: none, and hide .hide-visibility using visibility: hidden.
+☑  Add a comment explaining the visible difference between those two hidden paragraphs on the 
+page. 
+☑  Give .scroll-box a fixed height (e.g., 120px) and set overflow: auto so that a scrollbar appears.
+   ========================================================== */
+
+/* ==========================================================
+   SECTION 1: RESET
+   ========================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+ 
+/* ==========================================================
+   SECTION 2: BASE + TYPOGRAPHY
+   ========================================================== */
+body {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1rem;                        /* rem = relative to root size */
+  line-height: 1.6;
+  color: #3a2f4f;
+  background-color: #1b1740;              /* fallback if the gradient fails */
+  background-image: linear-gradient(160deg, #1b1740 0%, #4a2a7a 55%, #c2527f 100%);
+  background-attachment: fixed;           /* gradient stays put while scrolling */
+}
+ 
+h1, h2 {                                  /* grouping selector, same font for both */
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  font-weight: bold;
+}
+ 
+h1 {
+  font-size: 2.75rem;
+  color: white;
+  letter-spacing: 1px;
+}
+ 
+h2 {
+  font-size: 1.5rem;
+  color: navy;
+  margin-bottom: 0.6em;                   /* em = relative to this element's font size */
+}
+ 
+h2::before {
+  content: "\2726  ";
+  color: #e8890c;
+}
+ 
+/* ==========================================================
+   SECTION 3: LAYOUT (header, main, footer)
+   ========================================================== */
+header,
+footer {
+  text-align: center;                  
+  color: white;
+  background-color: rgba(15, 12, 41, 0.55);   /* see-through dark so the gradient shows */
+}
+ 
+header {
+  padding: 2.5rem 1rem 2rem;
+  margin-bottom: 2.5rem;
+  border-bottom: 4px solid #f2b95c;
+}
+ 
+footer {
+  padding: 1.5rem 1rem;
+  margin-top: 2.5rem;
+  font-size: 0.9rem;
+  border-top: 4px solid #f2b95c;
+}
+ 
+main {
+  width: 100%;                            /* % so it fits any screen */
+  padding: 0 1rem;
+}
+ 
+/* ==========================================================
+   SECTION 4: COMPONENTS
+   ========================================================== */
+ 
+/* ---------- The cards ---------- */
+.card {
+  width: 500px;                      
+  max-width: 100%;                       
+  padding: 20px;
+  border: 3px solid #1b1740;           
+  border-radius: 16px;
+  background-color: #fff7ea;            
+  box-shadow: 6px 6px 0 rgba(15, 12, 41, 0.6);  
+  margin: 0 auto;                      
+  margin-bottom: 28px;                 
+}
+ 
+/*
+  TOTAL RENDERED WIDTH OF ONE .card:
+  Because of box-sizing: border-box, the 500px I set already includes
+  the padding and border, so the card is 500px wide in total.
+  How I checked: content = 500 - (20 + 20 padding) - (3 + 3 border)
+  = 454px, then 454 + 40 + 6 = 500px. Matches what Inspect shows.
+*/
+ 
+/* descendant selector: every <p> that is anywhere inside a .card */
+.card p {
+  color: #3a2f4f;
+  margin-bottom: 0.6em;
+}
+ 
+/*
+  CASCADE DEMO (two rules for the same element, p.intro):
+    1) ".card p" has specificity (0,1,1)  -> color: #3a2f4f
+    2) ".intro"  has specificity (0,1,0)  -> color: crimson (below)
+  ".card p" WINS, even though ".intro" is written later in the file,
+  because specificity is checked before order and (0,1,1) beats (0,1,0).
+  So the intro text stays dark purple, not crimson. Order only matters
+  when two rules have the same specificity.
+*/
+.intro {
+  color: crimson;                         /* this one loses, see comment above */
+  font-size: 1.15rem;
+  font-weight: bold;
+}
+ 
+/* ::first-letter pseudo-element = big drop-cap style first letter */
+.intro::first-letter {
+  font-size: 1.8em;
+  color: #e8890c;
+}
+ 
+/* ---------- ID selectors ---------- */
+#about {
+  border-color: #d6336c;                  /* pink border so About stands out */
+  position: relative;                     /* needed so the badge can be positioned */
+}
+ 
+/* badge stuck in the top-right corner of the About card */
+#about::after {
+  content: "Hello!";
+  position: absolute;                     /* positioned against #about */
+  top: 10px;
+  right: 10px;
+  padding: 2px 10px;
+  font-family: Arial, sans-serif;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: white;
+  background-color: #d6336c;
+  border-radius: 20px;
+}
+ 
+#skills {
+  border-color: #1c9c8f;                  /* teal */
+}
+ 
+#notes {
+  border-color: #e8890c;                  /* orange */
+}
+ 
+/* ---------- Navigation links ---------- */
+nav {
+  margin-top: 1.25rem;
+}
+ 
+nav a {
+  display: inline-block;                  /* so padding actually works on links */
+  padding: 8px 18px;
+  margin: 0 4px;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  background-color: rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+}
+ 
+/* :hover pseudo-class, link lights up when the mouse is on it */
+nav a:hover {
+  color: #1b1740;
+  background-color: #f2b95c;
+}
+ 
+/* ---------- Skills list (flexbox) ---------- */
+.skills-list {
+  display: flex;                          /* puts the items in a row */
+  justify-content: flex-start;
+  gap: 12px;                              /* space between the tags */
+  list-style: none;
+}
+ 
+/* child selector: only the <li> directly inside .skills-list */
+.skills-list > li {
+  padding: 4px 16px;
+  font-family: Arial, sans-serif;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: white;
+  background-color: #1c9c8f;
+  border-radius: 999px;                   /* pill shape = tag look */
+}
+ 
+.skills-list > li:nth-child(2) {
+  background-color: #d6336c;
+}
+ 
+.skills-list > li:nth-child(3) {
+  background-color: #e8890c;
+}
+ 
+/* ---------- Hiding stuff ---------- */
+.hide-none {
+  display: none;                          /* gone completely */
+}
+ 
+.hide-visibility {
+  visibility: hidden;                     /* invisible but still there */
+}
+ 
+/*
+  WHAT YOU SEE ON THE PAGE: the .hide-none paragraph is removed,
+  so there is NO gap and the next paragraph moves up. The
+  .hide-visibility paragraph is invisible but still takes up its space,
+  so there's an empty gap between the Notes title and the visible
+  paragraph.
+*/
+ 
+/* ---------- Hobbies box that scrolls ---------- */
+.scroll-box {
+  height: 120px;                          /* fixed height */
+  overflow: auto;                         /* scrollbar shows up when text is too long */
+  border-color: #6c4bd1;                  /* purple */
+  scrollbar-color: #6c4bd1 #fff7ea;
+}
+
+/* ==========================================================
+   REFLECTION ANSWERS
+   ----------------------------------------------------------
+   1. The ".card p" rule won over ".intro" because of specificity.
+      ".card p" has one class and one element (0,1,1), while ".intro"
+      has only one class (0,1,0). The browser compares specificity
+      first, so the higher one wins even though ".intro" was written
+      later. Source order only decides when specificity is equal.
+
+   2. With content-box, width only covers the content, so padding and
+      border are added on top:
+        500px (width) + 20px + 20px (padding) + 2px + 2px (border)
+        = 544px rendered width.
+      With border-box it stays at 500px.
+
+   3. I would use visibility: hidden when the layout should not shift,
+      for example hiding an error message or an icon until it is needed
+      (so the page does not "jump" when it appears), or toggling a menu
+      item without moving the elements around it. I would use
+      display: none when the element should be gone completely. :)
+   ========================================================== */

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML Practical Application Activity</title>
+</head>
+<body id="top">
+
+<h1 id="main-heading">HTML Practical Application Activity</h1>
+
+<!-- ===================== 1. Images ===================== -->
+<h2 id="images-section">Images</h2>
+
+<img src="images/image-1.webp" alt="elf with potion" width="300">
+<img src="images/image-2.webp" alt="yumeship" width="300">
+
+<figure>
+  <img src="images/image-3.webp" alt="2 elves on a boat" width="300">
+  <figcaption>2 elves on a boat for a art commission.</figcaption>
+</figure>
+
+<!-- ===================== 2. Hyperlinks ===================== -->
+<h2 id="hyperlinks-section">Hyperlinks</h2>
+
+<p>Internal link: go to the <a href="#multimedia-section">Multimedia section</a>.</p>
+<p>External link: visit <a href="https://vgen.co/JemuelArts" target="_blank">My Art Commissions</a>.</p>
+<p>Email link: <a href="mailto:artsjemuel@gmail.com">email me</a>.</p>
+<p>Anchor link: jump to the <a href="#dom-section">HTML DOM section</a>.</p>
+
+<!-- ===================== 3. Multimedia ===================== -->
+<h2 id="multimedia-section">Multimedia</h2>
+
+<audio controls>
+  <source src="media/audio-1.mp3" type="audio/mpeg">
+  Your browser does not support audio. <a href="media/audio-1.mp3">Download it here</a>.
+</audio>
+
+<video controls width="300">
+  <source src="media/video-1.mp4" type="video/mp4">
+  Your browser does not support video. <a href="media/video-1.mp4">Download it here</a>.
+</video>
+
+<!-- ===================== 4. Useful Tags ===================== -->
+<h2 id="usefultags-section">Useful Tags</h2>
+
+<!-- blockquote: used to set off a quote from regular text -->
+<blockquote>"The best way to learn HTML is to build something real with it."</blockquote>
+
+<!-- abbr: shows the full meaning of an acronym on hover -->
+<p><abbr title="HyperText Markup Language">HTML</abbr> is the standard language for web pages.</p>
+
+<!-- mark: highlights an important word -->
+<p>Always add <mark>alt text</mark> to your images.</p>
+
+<!-- ===================== 5. HTML DOM ===================== -->
+<h2 id="dom-section">HTML DOM</h2>
+
+<p>Elements with an id: #main-heading, #images-section, #hyperlinks-section, #multimedia-section, #usefultags-section, #dom-section.</p>
+
+<img src="images/dom-tree.png" alt="Screenshot of the DevTools Elements panel showing the nested DOM tree of this page" width="400">
+
+<!--
+  Parent-Child Relationship Explanation:
+  In the DOM tree, the <figure> element is the parent of two children: the 
+  <img> showing the elves on a boat, and the <figcaption> below it, which 
+  are siblings of each other since they share the same parent. Similarly, 
+  the <audio> element is the parent of its <source> tag, which tells the 
+  browser where to find the audio file. The <body id="top"> element sits 
+  above all of this, acting as the parent of every heading, paragraph, and 
+  section on the page. This shows how HTML naturally nests smaller elements 
+  inside larger container elements to build the page's structure.
+-->
+
+</body>
+</html>
